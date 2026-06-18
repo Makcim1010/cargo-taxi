@@ -40,7 +40,7 @@ RUN php artisan config:cache
 RUN php artisan view:cache
 
 # Проверяем соединение с БД и выполняем миграции
-RUN php artisan migrate --force -v
+RUN php artisan migrate
 
 # Права на папки
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
