@@ -9,10 +9,11 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    libzip-dev
+    libzip-dev \
+    libpq-dev
 
 # Устанавливаем расширения PHP
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip pdo_pgsql
 
 # Устанавливаем Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -22,11 +23,6 @@ COPY . /var/www/html/
 
 # Копируем .env.example в .env
 RUN cp /var/www/html/.env.example /var/www/html/.env
-
-# Создаём базу данных SQLite
-RUN mkdir -p /var/www/html/database && \
-    touch /var/www/html/database/database.sqlite && \
-    chmod 666 /var/www/html/database/database.sqlite
 
 # Устанавливаем корень сайта на public
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
@@ -46,7 +42,7 @@ RUN php artisan view:cache
 # Миграции
 RUN php artisan migrate --force
 
-# Права
+# Права на папки
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
