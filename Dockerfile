@@ -25,10 +25,13 @@ RUN mkdir -p /var/www/html/database && \
     touch /var/www/html/database/database.sqlite && \
     chmod 666 /var/www/html/database/database.sqlite
 
+# Создаём .env из .env.example (если есть)
+RUN if [ -f /var/www/html/.env.example ]; then cp /var/www/html/.env.example /var/www/html/.env; else echo "APP_KEY=" > /var/www/html/.env; fi
+
 # Устанавливаем зависимости
 RUN composer install --no-dev --ignore-platform-req=php
 
-# Генерируем ключ (если нет в .env)
+# Генерируем ключ
 RUN php artisan key:generate --force
 
 # Кешируем маршруты и конфиги
