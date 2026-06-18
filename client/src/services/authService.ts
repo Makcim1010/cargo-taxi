@@ -1,7 +1,8 @@
 import api from '@/api/axios';
 
+// Экспортируем интерфейс
 export interface RegisterData {
-    role: 'customer' | 'driver';
+    role: 'customer' | 'driver' | 'loader';
     surname: string;
     name: string;
     patronymic?: string;
@@ -16,13 +17,8 @@ export interface RegisterData {
 }
 
 export const register = async (data: RegisterData) => {
-    try {
-        const response = await api.post('/user/register', data);
-        return response.data;
-    } catch (error: any) {
-        console.log('Ошибка регистрации:', error.response?.data);
-        throw error;
-    }
+    const response = await api.post('/user/register', data);
+    return response.data;
 };
 
 export const login = async (phone: string, password: string) => {
@@ -34,4 +30,3 @@ export const logout = async () => {
     const response = await api.post('/logout');
     return response.data;
 };
-
