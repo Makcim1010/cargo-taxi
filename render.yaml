@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: cargo-taxi-backend
+    env: php
+    buildCommand: composer install --no-dev
+    startCommand: php artisan serve --port=$PORT --host=0.0.0.0
+    envVars:
+      - key: APP_KEY
+        value: base64:...
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        sync: false
