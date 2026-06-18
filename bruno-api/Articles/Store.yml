@@ -1,0 +1,30 @@
+info:
+  name: Store
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/api/articles
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Новая статья через Bruno",
+        "short_text": "Краткое описание статьи для теста",
+        "full_text": "Здесь находится полный текст статьи, который может быть очень длинным.",
+        "image_url": "https://example.com",
+        "type": "news"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

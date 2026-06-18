@@ -1,0 +1,27 @@
+info:
+  name: Store
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/api/mode-transports
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Грузовой",
+        "characteristics": {
+          "max_weight": "5 тонн",
+          "dimensions": "6x2.5x3м"
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

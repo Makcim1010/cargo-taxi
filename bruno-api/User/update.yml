@@ -1,0 +1,26 @@
+info:
+  name: update
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: http://127.0.0.1:8000/api/user/update/1
+  body:
+    type: json
+    data: |-
+      {
+          "surname": "Петров",
+          "name": "Иван",
+          "email": "ivan@example.com",
+          "phone": "79991234567"
+      }
+  auth:
+    type: bearer
+    token: 6|sjSsrKCdbv3Tt1Ix4YlDvJHqZRWYtPGjgVqIuzLr768870cb
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,51 @@
+opencollection: 1.0.0
+
+info:
+  name: API
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+
+request:
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+docs:
+  content: |-
+    ### Laravel Project API
+
+    #### _Коллекция запросов для тестирования бэкенда нашего приложения:_
+
+    - **Базовый URL локально:** `http://localhost:8000/api`
+        
+    - **Версия API:** v1
+        
+
+    StartFragmentВажно перед началом работы:
+
+    1. Сначала выполните запрос **POST Register** или **POST Login**, чтобы создать сессию.
+        
+    2. Скопируйте полученный `token` из ответа.
+        
+    3. Для добавления машины (vehicle/create) перейдите во вкладку **Authorization** этой коллекции, выберите тип _Bearer Token_ и вставьте его туда, чтобы он применился ко всем запросам автоматически.
+        
+
+    Update the name and overview whenever you’re ready to make it yours.
+
+    [Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)
+  type: text/markdown
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

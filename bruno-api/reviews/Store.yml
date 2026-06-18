@@ -1,0 +1,33 @@
+info:
+  name: Store
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/api/reviews
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+          "order_id": 1,
+          "executor_id": 1, 
+          "rating": 5,
+          "comment": "Отличный водитель, приехал вовремя, Газель чистая!",
+          "photos": [
+              "https://yoursite.com",
+              "https://yoursite.com"
+          ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

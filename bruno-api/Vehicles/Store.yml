@@ -1,0 +1,26 @@
+info:
+  name: Store
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/api/vehicles
+  body:
+    type: json
+    data: |-
+      {
+        "mode_transports_id": 1,
+        "mark": "ГАЗ",
+        "model": "Next Длинная",
+        "vin_or_body_number": "X677XX77"
+      }
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

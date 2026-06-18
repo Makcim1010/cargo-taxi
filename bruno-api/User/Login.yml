@@ -1,0 +1,37 @@
+info:
+  name: Login
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/api/user/login
+  body:
+    type: json
+    data: |-
+      {
+          "phone": "+79124376562",
+          "password": "secret_password"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: before-request
+      code: |-
+        if (res.getStatus() === 200) {
+          const data = res.getBody();
+          bru.setEnvVar("auth_token", data.access_token);
+        }
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200) {
+          const data = res.getBody();
+          bru.setEnvVar("auth_token", data.access_token);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,27 @@
+info:
+  name: Update
+  type: http
+  seq: 5
+
+http:
+  method: PUT
+  url: http://127.0.0.1:8000/api/mode-transports/1
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Грузовой",
+        "characteristics": {
+          "max_weight": "7 тонн",
+          "axles": 3
+        }
+      }
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

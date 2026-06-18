@@ -1,0 +1,30 @@
+info:
+  name: Register
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/api/user/register
+  body:
+    type: json
+    data: |-
+      {
+        "surname": "Иванов",
+        "name": "Сергей",
+        "phone": "+79124376562",
+        "password": "secret_password",
+        "license_number": null,
+        "license_date": null,
+        "license_categories": null,
+        "has_loaders": false,
+        "loaders_count": 0,
+        "roles": ["customer"]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
