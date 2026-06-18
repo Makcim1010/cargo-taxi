@@ -39,8 +39,8 @@ RUN php artisan route:cache
 RUN php artisan config:cache
 RUN php artisan view:cache
 
-# Миграции
-RUN php artisan migrate --force
+# Проверяем соединение с БД и выполняем миграции
+RUN php artisan migrate --force -v
 
 # Права на папки
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
