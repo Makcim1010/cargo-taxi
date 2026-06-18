@@ -45,7 +45,4 @@ RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 # Включаем mod_rewrite
 RUN a2enmod rewrite
 
-# Копируем .htaccess если есть
-COPY .htaccess /var/www/html/public/.htaccess 2>/dev/null || true
-
 EXPOSE 80
