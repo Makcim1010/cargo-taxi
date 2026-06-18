@@ -119,7 +119,8 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import { register, RegisterData } from '@/services/authService';
+import { register } from "@/services/authService";
+import type { RegisterData } from "@/services/authService";
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
