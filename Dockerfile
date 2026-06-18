@@ -17,12 +17,13 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 # Устанавливаем Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Создаём файл базы данных SQLite
-RUN touch /var/www/html/database/database.sqlite
-RUN chmod 666 /var/www/html/database/database.sqlite
-
 # Копируем проект
 COPY . /var/www/html/
+
+# Создаём папку и файл базы данных SQLite
+RUN mkdir -p /var/www/html/database && \
+    touch /var/www/html/database/database.sqlite && \
+    chmod 666 /var/www/html/database/database.sqlite
 
 # Устанавливаем зависимости
 RUN composer install --no-dev --ignore-platform-req=php
